@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    hello world
+    <button id="start">开启</button>
+    <button id="stop">关闭</button>
+    <div>这是内容</div>
+    <div id="content"></div>
+    <script>
+        const abortObj = new AbortController();
+        let name = ''
+        document.querySelector("#start").onclick = function(){
+            name = '';
+
+            // 如果是application/json数据,则无法通过预检请求.
+            let data = JSON.stringify({name:'test'})
+            // let data = 'name=test'
+            const blob = new Blob([data],{type:'application/json'})
+            // const blob = new Blob([data],{type:'application/x-www-form-urlencoded'})
+            navigator.sendBeacon('http://localhost:3000/api/beacon',blob,{
+                // type:"beacon"
+            })
+
+        }
+        document.querySelector("#stop").onclick = function(){
+            console.log("请求关闭")
+            abortObj?.abort();
+        }
+    </script>
+</body>
+</html>

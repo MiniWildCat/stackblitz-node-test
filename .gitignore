@@ -1,0 +1,17 @@
+**/node_modules
+**/*.exe
+**/*.zip
+**/*.nupkg
+
+# nsis
+**/nisedit203/*.nsi
+!**/nsis-3.09/**
+!nisedit2.0.3.exe
+
+# niuniu
+**/FilesToInstall/**
+**/Output/**
+**/SetupScripts/app.7z
+
+# tauri
+**/target/**
